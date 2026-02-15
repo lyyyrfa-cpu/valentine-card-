@@ -68,7 +68,9 @@ window.onload = function () {
             "Dan sekali lagi… maaf ya, Kaka 🤍"
         ];
 
-        let framePerLine = 20;
+        // 🔥 5 DETIK PER KALIMAT
+        let framePerLine = 300;
+
         let currentIndex = Math.floor(frameNumber / framePerLine);
 
         if (currentIndex >= fullMessage.length) {
@@ -89,13 +91,17 @@ window.onload = function () {
 
     // ================= HEARTS =================
     function drawHearts() {
-        drawHeart(canvas.width / 4,
-            canvas.height / 4 + Math.sin(frameNumber * 0.1) * 10,
-            40);
+        drawHeart(
+            canvas.width / 4,
+            canvas.height / 4 + Math.sin(frameNumber * 0.05) * 10,
+            40
+        );
 
-        drawHeart(canvas.width * 0.8,
-            canvas.height / 3 + Math.sin(frameNumber * 0.1) * 10,
-            30);
+        drawHeart(
+            canvas.width * 0.8,
+            canvas.height / 3 + Math.sin(frameNumber * 0.05) * 10,
+            30
+        );
     }
 
     function drawHeart(x, y, size) {
@@ -130,11 +136,13 @@ window.onload = function () {
 
         context.save();
 
+        // head
         context.beginPath();
         context.arc(x, y, size / 2, 0, Math.PI * 2);
         context.fillStyle = "white";
         context.fill();
 
+        // ears
         context.beginPath();
         context.ellipse(x - size / 4, y - size / 1.2,
             size / 6, size / 2, 0, 0, Math.PI * 2);
@@ -145,17 +153,20 @@ window.onload = function () {
             size / 6, size / 2, 0, 0, Math.PI * 2);
         context.fill();
 
+        // eyes
         context.fillStyle = "black";
         context.beginPath();
         context.arc(x - size / 6, y - size / 8, 3, 0, Math.PI * 2);
         context.arc(x + size / 6, y - size / 8, 3, 0, Math.PI * 2);
         context.fill();
 
+        // nose
         context.fillStyle = "pink";
         context.beginPath();
         context.arc(x, y + size / 8, 4, 0, Math.PI * 2);
         context.fill();
 
+        // blush
         context.fillStyle = "rgba(255,182,193,0.8)";
         context.beginPath();
         context.arc(x - size / 3, y + size / 8, 6, 0, Math.PI * 2);
