@@ -25,7 +25,7 @@ window.onload = function () {
     function drawText() {
 
         var fontSize = Math.min(22, window.innerWidth / 25);
-        var lineHeight = 8;
+        var lineHeight = 10;
 
         context.font = fontSize + "px Comic Sans MS";
         context.textAlign = "center";
@@ -68,23 +68,22 @@ window.onload = function () {
             "Dan sekali lagi… maaf ya, Kaka 🤍"
         ];
 
-        // 🔥 5 DETIK PER KALIMAT
-        let framePerLine = 300;
+        // 💖 6 DETIK PER KALIMAT
+        let framePerLine = 360;
 
         let currentIndex = Math.floor(frameNumber / framePerLine);
 
-        if (currentIndex >= fullMessage.length) {
-            currentIndex = fullMessage.length - 1;
+        if (currentIndex > fullMessage.length) {
+            currentIndex = fullMessage.length;
         }
 
-        let start = Math.max(0, currentIndex - 3);
-        let yStart = canvas.height / 2;
+        let yStart = canvas.height / 4;
 
-        for (let i = start; i <= currentIndex; i++) {
+        for (let i = 0; i < currentIndex; i++) {
             context.fillText(
                 fullMessage[i],
                 canvas.width / 2,
-                yStart + (i - start) * (fontSize + lineHeight)
+                yStart + i * (fontSize + lineHeight)
             );
         }
     }
