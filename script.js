@@ -9,7 +9,7 @@ window.onload = function () {
     var frameNumber = 0;
     var fps = 60;
 
-    const fullMessage = [
+    const messages = [
         "Happy Valentine’s Day, Kaka 🤍",
         "",
         "Sebelumnya aku mau minta maaf buat perkataan aku semalam.",
@@ -41,14 +41,14 @@ window.onload = function () {
         "Terima kasih sudah jadi seseorang",
         "yang begitu berarti buat aku.",
         "",
-        "Dan sekali lagi… maaf ya, Kaka 🤍"
-        "dadahhh, btw ini aku coding, baru banget belajar coding buat ngucapin ini, jadii maaf kalau kurengg hehe"
+        "Dan sekali lagi… maaf ya, Kaka 🤍",
+        "dadahhhh, btw ini aku coding, baru banget belajar coding buat ngucapin ini, jadi maaf kalau kureng"
     ];
 
-    // 💖 TOTAL 6 DETIK PER KALIMAT
-    var totalDuration = 6 * fps;   // 360 frame
-    var fadeDuration = 1 * fps;    // 1 detik fade in
-    var blurDuration = 1 * fps;    // 1 detik blur out
+    // Total durasi 6 detik per kalimat
+    var totalDuration = 6 * fps;
+    var fadeDuration = 1 * fps;
+    var blurDuration = 1 * fps;
     var holdDuration = totalDuration - fadeDuration - blurDuration;
 
     function draw() {
@@ -65,14 +65,12 @@ window.onload = function () {
     draw();
 
     function drawAnimatedText() {
-
         var fontSize = Math.min(26, window.innerWidth / 20);
         context.font = fontSize + "px Comic Sans MS";
         context.textAlign = "center";
-        context.fillStyle = "white";
 
         let index = Math.floor(frameNumber / totalDuration);
-        if (index >= fullMessage.length) return;
+        if (index >= messages.length) return;
 
         let localFrame = frameNumber % totalDuration;
 
@@ -99,25 +97,21 @@ window.onload = function () {
         context.globalAlpha = alpha;
         context.shadowColor = "rgba(255,20,147,0.8)";
         context.shadowBlur = blur;
+        context.fillStyle = "white";
 
-        context.fillText(
-            fullMessage[index],
-            canvas.width / 2,
-            canvas.height / 2 + yOffset
-        );
+        context.fillText(messages[index], canvas.width / 2, canvas.height / 2 + yOffset);
 
         context.globalAlpha = 1;
         context.shadowBlur = 0;
     }
 
-    // ================= HEART =================
+    // ================= HEARTS =================
     function drawHearts() {
         drawHeart(
             canvas.width / 4,
             canvas.height / 4 + Math.sin(frameNumber * 0.05) * 10,
             40
         );
-
         drawHeart(
             canvas.width * 0.8,
             canvas.height / 3 + Math.sin(frameNumber * 0.05) * 10,
@@ -139,6 +133,8 @@ window.onload = function () {
             x, y
         );
         context.fillStyle = "pink";
+        context.shadowColor = "rgba(255,20,147,0.8)";
+        context.shadowBlur = 15;
         context.fill();
     }
 
@@ -174,5 +170,4 @@ window.onload = function () {
         context.arc(x, y + size / 8, 4, 0, Math.PI * 2);
         context.fill();
     }
-
 };
